@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'documents-master-ui';
+
+  constructor(private messageService: MessageService) {
+  }
+
+  showNegativeMessage() {
+    this.messageService.add({severity:'error', summary:'PrimeNg', detail:'Hello your PrimeNg'});
+  }
+
+  showPositiveMessage() {
+    this.messageService.add({severity:'success', summary:'PrimeNg', detail:'Hello your PrimeNg'});
+  }
 }
