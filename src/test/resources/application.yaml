@@ -1,0 +1,15 @@
+spring:
+  liquibase:
+    enabled: false
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  h2:
+    console:
+      enabled: false
+      path: /h2
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: username
+    password: password
