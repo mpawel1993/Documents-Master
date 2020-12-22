@@ -16,6 +16,8 @@ import {CalendarModule} from 'primeng/calendar';
 import {DropdownModule} from 'primeng/dropdown';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { DragDropDirective } from './direcives/drag-drop-directive';
+import {FilesService} from "./service/files-service";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -35,10 +37,12 @@ import { DragDropDirective } from './direcives/drag-drop-directive';
     ButtonModule,
     CalendarModule,
     FormsModule,
-    DropdownModule
+    DropdownModule,
+    HttpClientModule
   ],
   providers: [MessageService,
-    {provide: ErrorHandler, useClass: GlobalExceptionHandler}],
+    {provide: ErrorHandler, useClass: GlobalExceptionHandler},
+    FilesService],
   bootstrap: [AppComponent],
   exports: []
 })
