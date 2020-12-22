@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {MessageService} from "primeng/api";
-import {Document} from "../domain/document";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { MessageService } from "primeng/api";
+import { Document } from "../domain/document";
 
 @Component({
   selector: 'app-add-document',
@@ -14,6 +14,10 @@ export class AddDocumentComponent implements OnInit {
 
   document: Document | undefined
 
+  //todo add flags
+  cities = ['', 'Poland', 'Germany', 'Netherlans'];
+
+
   constructor(private fb: FormBuilder, private messageService: MessageService) {
   }
 
@@ -22,7 +26,10 @@ export class AddDocumentComponent implements OnInit {
       name: '',
       issuer: '',
       creationDate: '',
-      submitDate: ''
+      uploadDate: '',
+      country: '',
+      folder: '',
+      tags: ''
     });
 
     this.inputForm.valueChanges.subscribe(console.log)
@@ -31,6 +38,6 @@ export class AddDocumentComponent implements OnInit {
   displaySubmit() {
     this.document = this.inputForm.value;
     console.log('Provided document ', this.document);
-    this.messageService.add({severity: 'success', summary: 'Submitted', detail: 'Submitted'});
+    this.messageService.add({ severity: 'success', summary: 'Submitted', detail: 'Submitted' });
   }
 }

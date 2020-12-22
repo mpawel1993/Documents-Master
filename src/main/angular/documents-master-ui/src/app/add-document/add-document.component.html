@@ -2,29 +2,34 @@
 <br>
 <form [formGroup]="inputForm">
 
-<span class="p-float-label">
-<input id="float-name-input" type="text" pInputText formControlName="name">
-<label for="float-name-input">Name:</label>
-</span>
+  <span class="p-float-label">
+    <input id="float-name-input" type="text" pInputText formControlName="name">
+    <label for="float-name-input">Name:</label>
+  </span>
 
   <br>
   <span class="p-float-label">
-<input id="float-issuer-input" type="text" pInputText formControlName="issuer">
-<label for="float-issuer-input">Issuer:</label>
-</span>
+    <input id="float-issuer-input" type="text" pInputText formControlName="issuer">
+    <label for="float-issuer-input">Issuer:</label>
+  </span>
 
   <span>
-<label style="font-size: 12px;">Creation Date:</label><br>
-<p-calendar formControlName="creationDate"></p-calendar>
-</span>
+    <label style="font-size: 12px;">Creation Date:</label><br>
+    <p-calendar formControlName="creationDate"></p-calendar>
+  </span>
   <br>
   <span>
-<label style="font-size: 12px;">Submit Date:</label><br>
-<p-calendar formControlName="submitDate"></p-calendar>
-</span>
+    <label style="font-size: 12px;">Submit Date:</label><br>
+    <p-calendar formControlName="uploadDate"></p-calendar>
+  </span>
+  <br>
+  <span>
+    <label style="font-size: 12px;">Country:</label><br>
+    <p-dropdown [options]="cities" formControlName="country"></p-dropdown>
+  </span>
+
   <br>
   <button pButton type="button" label="Submit" class="p-button-success" (click)="displaySubmit()"></button>
 </form>
 
-{{inputForm.value | json}}
-
+<app-upload-file></app-upload-file>

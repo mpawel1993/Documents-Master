@@ -13,12 +13,17 @@ import {InputTextModule} from "primeng/inputtext";
 import {ButtonModule} from 'primeng/button';
 import {GlobalExceptionHandler} from "./advice/global-exception-handler";
 import {CalendarModule} from 'primeng/calendar';
+import {DropdownModule} from 'primeng/dropdown';
+import { UploadFileComponent } from './upload-file/upload-file.component';
+import { DragDropDirective } from './direcives/drag-drop-directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopBarComponent,
-    AddDocumentComponent
+    AddDocumentComponent,
+    UploadFileComponent,
+    DragDropDirective
   ],
   imports: [
     BrowserModule,
@@ -29,11 +34,13 @@ import {CalendarModule} from 'primeng/calendar';
     InputTextModule,
     ButtonModule,
     CalendarModule,
-    FormsModule
+    FormsModule,
+    DropdownModule
   ],
   providers: [MessageService,
     {provide: ErrorHandler, useClass: GlobalExceptionHandler}],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: []
 })
 export class AppModule {
 }
