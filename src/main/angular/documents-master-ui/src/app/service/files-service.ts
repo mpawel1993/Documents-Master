@@ -6,13 +6,15 @@ import {Injectable} from "@angular/core";
   providedIn: 'root',
 })
 export class FilesService {
+  private file: any;
 
   constructor(private httpClient: HttpClient) {
   }
 
-  public sendFilesToBackEnd(files: any): Observable<any> {
+  public sendFilesToBackEnd(files: File[]): Observable<any> {
     const formData = new FormData();
-    formData.append('file', files);
+    this.file = files;
+    formData.append('file', this.file);
     return this.httpClient.post("http://localhost:8080/documents/files/upload", formData);
   }
 

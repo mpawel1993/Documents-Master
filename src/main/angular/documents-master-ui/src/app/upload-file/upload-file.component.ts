@@ -8,7 +8,7 @@ import {FilesService} from "../service/files-service";
 })
 export class UploadFileComponent implements OnInit {
 
-  files: any = [];
+  files: Array<File> = [];
 
   constructor(private filesService: FilesService) {
   }
@@ -17,14 +17,10 @@ export class UploadFileComponent implements OnInit {
   }
 
   uploadFile(event: any) {
-    for (let index = 0; index < event.length; index++) {
-      const element = event[index];
-      this.files.push(element.name)
-    }
+    let actualFiles: Array<File> = event.target.files;
   }
 
   deleteAttachment(index: any) {
-    this.files.splice(index, 1)
   }
 
   sendToBackEnd() {
