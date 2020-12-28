@@ -17,7 +17,9 @@ import {DropdownModule} from 'primeng/dropdown';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { DragDropDirective } from './direcives/drag-drop-directive';
 import {FilesService} from "./service/files-service";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
+import {ChipsModule} from 'primeng/chips';
+import {AutoCompleteModule} from 'primeng/autocomplete';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     CalendarModule,
     FormsModule,
     DropdownModule,
-    HttpClientModule
+    HttpClientModule,
+    ChipsModule,
+    AutoCompleteModule
   ],
   providers: [MessageService,
     {provide: ErrorHandler, useClass: GlobalExceptionHandler},

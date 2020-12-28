@@ -1,7 +1,6 @@
 <h1>Add new document</h1>
 <br>
 <form [formGroup]="inputForm">
-
   <span class="p-float-label">
     <input id="float-name-input" type="text" pInputText formControlName="name">
     <label for="float-name-input">Name:</label>
@@ -27,9 +26,28 @@
     <label style="font-size: 12px;">Country:</label><br>
     <p-dropdown [options]="cities" formControlName="country"></p-dropdown>
   </span>
-
   <br>
   <button pButton type="button" label="Submit" class="p-button-success" (click)="displaySubmit()"></button>
 </form>
 
 <app-upload-file></app-upload-file>
+
+Tags :
+<br>
+<span class="p-float-label">
+    <input id="add-tag-input" type="text" pInputText>
+  <!--  formControlName="issuer"-->
+    <label for="add-tag-input">
+      Issuer:
+    </label>
+</span>
+
+<p-chips [(ngModel)]="values"></p-chips>
+
+<p-autoComplete [(ngModel)]="tagValue"
+                [suggestions]="results"
+                (completeMethod)="search($event)"
+                (keyup.enter)="addInput()">
+</p-autoComplete>
+
+<i class="pi pi-plus" style="font-size: 2rem" (click)="addInput()"></i>
