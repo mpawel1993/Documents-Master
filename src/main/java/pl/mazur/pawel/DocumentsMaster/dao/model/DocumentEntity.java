@@ -17,6 +17,7 @@ import java.util.List;
 public class DocumentEntity {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID")
     private long id;
 
@@ -34,7 +35,7 @@ public class DocumentEntity {
 
     @Lob
     @Column(name = "FILE_CONTENT")
-    private String fileContent;
+    private byte[] fileContent;
 
     @OneToOne
     @JoinColumn(name = "COUNTRY")

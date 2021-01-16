@@ -1,26 +1,26 @@
 package pl.mazur.pawel.DocumentsMaster.api.controllers;
 
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import java.io.InputStream;
+import org.springframework.web.multipart.MultipartFile;
+import pl.mazur.pawel.DocumentsMaster.api.dto.DocumentDTO;
+import pl.mazur.pawel.DocumentsMaster.dao.model.DocumentEntity;
+import pl.mazur.pawel.DocumentsMaster.dao.repos.DocumentRepository;
 
 @RestController
 @RequestMapping("/documents/files")
 @CrossOrigin
+@RequiredArgsConstructor
 public class FileController {
 
-    @PostMapping("/upload")
-    public void receiveNewDocuments(HttpServletRequest httpRequest) {
-        System.out.println(httpRequest);
-    }
+    private final DocumentRepository documentRepository;
 
+    @PostMapping("/upload")
     @SneakyThrows
-    private InputStream extractFile(Object actualFile) {
-//        return actualFile.getInputStream();
-        System.out.println(actualFile);
-        return null;
+    public void receiveNewDocuments(@RequestParam("file") MultipartFile file, DocumentDTO documentEntity) {
+        documentEntity.setFileContent(file.getBytes());
+        System.out.println(documentEntity);
     }
 
 }
