@@ -1,8 +1,10 @@
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { randomInt } from 'crypto';
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { MessageService } from "primeng/api";
-import { Document } from "../domain/document";
+import { Country, Tag } from '../util/data-types';
+
+
 
 @Component({
   selector: 'app-add-document',
@@ -12,15 +14,27 @@ import { Document } from "../domain/document";
 export class AddDocumentComponent implements OnInit {
 
   addDocumentForm = new FormGroup({});
+  documentTypes = ['', 'Email', 'Paper Document']
+  countries$: BehaviorSubject<Array<Country>> = new BehaviorSubject(new Array<Country>());
+  proposedTags$: BehaviorSubject<Array<Tag>> = new BehaviorSubject(new Array<Tag>());
 
   constructor(private fb: FormBuilder, private messageService: MessageService) {
   }
 
   ngOnInit() {
+    this.initForm();
+    this.countries$.next([{ id: '1', name: 'Poland' }, { id: '2', name: 'Germany' }, { id: '3', name: 'Poland' }]);
+  }
+
+  initForm(): void {
     this.addDocumentForm = this.fb.group({
       documentName: '',
       createDate: new Date(),
-      tags: []
+      tags: [],
+      documentType: undefined,
+      country: new FormControl(['']),
+      expirationDate: undefined,
+      selectedCity: undefined
     });
   }
 
@@ -29,4 +43,13 @@ export class AddDocumentComponent implements OnInit {
       tags: ['Ala', 'Ma', 'Kota']
     });
   }
+
+  filterCountry(event: any) {
+    this.proposedTags$.next([{ id: '1', name: 'Tax Offcie' }, { id: '2', name: 'Payment' }, { id: '3', name: 'Bill' }]);
+  }
+
+  submitDocument() {
+    console.log(' this.addDocumentForm.value', this.addDocumentForm.controls);
+  }
+
 }
