@@ -2,38 +2,51 @@
 <hr>
 <br>
 
+
 <div id="form-content">
+
   <form [formGroup]="addDocumentForm">
     <div class="inline">
 
+
       <div class="p-field">
         <label for="doc-name">Document Name</label>
-        <input id="doc-name" pInputText formControlName="documentName" />
-      </div>
-      <br>
-
-      <div class="p-field p-col-12 p-md-4">
-        <label for="icon">Create Date</label>
-        <p-calendar [showIcon]="true" inputId="icon" formControlName="createDate"></p-calendar>
-      </div>
-      <br>
-
-      <div class="p-field p-col-12 p-md-4">
-        <label for="icon">Upload Date</label>
-        <p-calendar [showIcon]="true" inputId="icon"></p-calendar>
-      </div>
-      <br>
-
-      <div class="p-field p-col-12 p-md-4">
-        <label for="icon">Expiration Date</label>
-        <p-calendar [showIcon]="true" inputId="icon"></p-calendar>
+        <input formControlName="documentName" id="doc-name" pInputText />
       </div>
       <br>
 
       <div class="p-field">
-        <label for="doc-name">Document Tag</label>
-        <input id="doc-name" pInputText (keyup.enter)="addInput()" />
+        <label for="documentType">Document Type</label>
+        <p-dropdown formControlName="documentType" [options]="documentTypes" [showClear]="true" id="documentType">
+        </p-dropdown>
       </div>
+      <br>
+
+      <div class="p-field">
+        <label for="country">Country</label>
+        <p-dropdown [options]="countries$.value" optionLabel="name" [showClear]="true" id="country"
+          formControlName="country">
+        </p-dropdown>
+      </div>
+      <br>
+
+      <div class="p-field p-col-12 p-md-4">
+        <label for="createDate">Create Date</label>
+        <p-calendar [showIcon]="true" inputId="createDate" formControlName="createDate"></p-calendar>
+      </div>
+      <br>
+
+      <div class="p-field p-col-12 p-md-4">
+        <label for="expirationDate">Expiration Date</label>
+        <p-calendar formControlName="expirationDate" [showIcon]="true" inputId="expirationDate"></p-calendar>
+      </div>
+      <br>
+
+      <span class="p-fluid">
+        <label for="tag">Tag</label>
+        <p-autoComplete id="tag" [suggestions]="proposedTags$.value" (completeMethod)="filterCountry($event)"
+          [dropdown]="true" optionLabel="name"></p-autoComplete>
+      </span>
       <br>
 
       <div class="p-field">
@@ -42,9 +55,13 @@
       </div>
       <br>
 
+      <p-button label="Submit" (onClick)="submitDocument()"></p-button>
+
     </div>
-    <div class="inline" style="padding-left: 20px;">
-      #uploader
+    <div class="inline" style="padding-left: 100px;">
+      <app-upload-file></app-upload-file>
+      <br>
+      {{ addDocumentForm.value | json }}
     </div>
   </form>
 </div>
