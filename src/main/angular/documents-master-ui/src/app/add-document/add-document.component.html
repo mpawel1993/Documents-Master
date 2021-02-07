@@ -1,53 +1,50 @@
 <h1>Add new document</h1>
+<hr>
 <br>
-<form [formGroup]="inputForm">
-  <span class="p-float-label">
-    <input id="float-name-input" type="text" pInputText formControlName="name">
-    <label for="float-name-input">Name:</label>
-  </span>
 
-  <br>
-  <span class="p-float-label">
-    <input id="float-issuer-input" type="text" pInputText formControlName="issuer">
-    <label for="float-issuer-input">Issuer:</label>
-  </span>
+<div id="form-content">
+  <form [formGroup]="addDocumentForm">
+    <div class="inline">
 
-  <span>
-    <label style="font-size: 12px;">Creation Date:</label><br>
-    <p-calendar formControlName="creationDate"></p-calendar>
-  </span>
-  <br>
-  <span>
-    <label style="font-size: 12px;">Submit Date:</label><br>
-    <p-calendar formControlName="uploadDate"></p-calendar>
-  </span>
-  <br>
-  <span>
-    <label style="font-size: 12px;">Country:</label><br>
-    <p-dropdown [options]="cities" formControlName="country"></p-dropdown>
-  </span>
-  <br>
-  <button pButton type="button" label="Submit" class="p-button-success" (click)="displaySubmit()"></button>
-</form>
+      <div class="p-field">
+        <label for="doc-name">Document Name</label>
+        <input id="doc-name" pInputText formControlName="documentName" />
+      </div>
+      <br>
 
-<app-upload-file></app-upload-file>
+      <div class="p-field p-col-12 p-md-4">
+        <label for="icon">Create Date</label>
+        <p-calendar [showIcon]="true" inputId="icon" formControlName="createDate"></p-calendar>
+      </div>
+      <br>
 
-Tags :
-<br>
-<span class="p-float-label">
-    <input id="add-tag-input" type="text" pInputText>
-  <!--  formControlName="issuer"-->
-    <label for="add-tag-input">
-      Issuer:
-    </label>
-</span>
+      <div class="p-field p-col-12 p-md-4">
+        <label for="icon">Upload Date</label>
+        <p-calendar [showIcon]="true" inputId="icon"></p-calendar>
+      </div>
+      <br>
 
-<p-chips [(ngModel)]="values"></p-chips>
+      <div class="p-field p-col-12 p-md-4">
+        <label for="icon">Expiration Date</label>
+        <p-calendar [showIcon]="true" inputId="icon"></p-calendar>
+      </div>
+      <br>
 
-<p-autoComplete [(ngModel)]="tagValue"
-                [suggestions]="results"
-                (completeMethod)="search($event)"
-                (keyup.enter)="addInput()">
-</p-autoComplete>
+      <div class="p-field">
+        <label for="doc-name">Document Tag</label>
+        <input id="doc-name" pInputText (keyup.enter)="addInput()" />
+      </div>
+      <br>
 
-<i class="pi pi-plus" style="font-size: 2rem" (click)="addInput()"></i>
+      <div class="p-field">
+        <label for="tags">Tags</label>
+        <p-chips id="tags" formControlName="tags"></p-chips>
+      </div>
+      <br>
+
+    </div>
+    <div class="inline" style="padding-left: 20px;">
+      #uploader
+    </div>
+  </form>
+</div>
