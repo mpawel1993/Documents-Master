@@ -1,0 +1,14 @@
+#input__form {
+    display: flex;
+}
+
+#left{
+    width: 100%;
+}
+
+#right{
+    width: 100%;
+}
+#chips > ul{
+    width: 200px;
+}
